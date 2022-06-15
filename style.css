@@ -49,6 +49,7 @@ body {
     justify-content: center;
     color: var(--main-red);
     font-size: 26px;
+    cursor: pointer;
 }
 
 .nav__logo {
@@ -86,6 +87,11 @@ body {
     text-decoration: none;
 }
 
+.nav__menu-item__active > a {
+    color: var(--main-red);
+    font-weight: 600;
+}
+
 .nav__sub-menu {
     padding-top: 6px;
     padding-left: 10px;
@@ -113,6 +119,7 @@ body {
     position: relative;
     display: flex;
     height: 339px;
+    margin-bottom: 20px;
     padding: 20px;
     background-color: rgb(251, 250, 228);
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.4);
@@ -125,12 +132,12 @@ body {
     z-index: 10;
     width: 30px;
     height: 30px;
-    background-color: #fff;
     color: var(--main-red);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 34px;
+    cursor: pointer;
 }
 
 .header__user-btn {
@@ -143,7 +150,7 @@ body {
     background-color: #fff;
     border-radius: 50%;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    text-align: center;
+    cursor: pointer;
 }
 
 .header__user-btn svg {
@@ -167,5 +174,49 @@ body {
 }
 
 main {
-    background-color: darkslategrey;
+}
+
+.main-carusel {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-carusel__item {
+    background-color: rgb(217, 249, 167);
+    min-height: 300px;
+    padding: 20px 60px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-body {
+    background-color: rgb(249, 243, 167);
+    flex-grow: 1;
+    text-align: center;
+}
+
+.bullet-block {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 0 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.bullet-block__bullet,
+.bullet-block__bullet {
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border: 2px solid var(--text-color);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.bullet-block__bullet.bullet-block__bullet--loaded,
+.bullet-block__bullet:hover {
+    background-color: var(--text-color);
 }
