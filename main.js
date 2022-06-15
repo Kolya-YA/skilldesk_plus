@@ -20,9 +20,15 @@ const mainCarusel = () => {
     if (caruselBlocks.length > 1) {
         addBulletBlock(caruselBlocks)
         addArrowButtons(caruselBlocks)
-
-        let curItem = 0
-
+        caruselEngine(caruselBlocks)
+        
+        const caruselBtns = document.querySelectorAll('[data-target-item]')
+        console.log(caruselBtns.length)
+        caruselBtns.forEach(btn => {
+            btn.addEventListener('click', e => {
+                caruselEngine(caruselBlocks, +e.currentTarget.dataset.targetItem)
+            })
+        })
     }
 }
 
@@ -38,8 +44,7 @@ function addBulletBlock(caruselBlocks) {
 
     for (let i = 0; i < caruselBlocks.length; i++) {
         let currentBullet = hollowBullet.cloneNode(true)
-        currentBullet.setAttribute('data-bullet-no', i)
-        console.log(currentBullet)
+        currentBullet.setAttribute('data-target-item', i)
         bulletBlock.appendChild(currentBullet)
     }
 
@@ -66,9 +71,15 @@ function addArrowButtons(caruselBlocks) {
         prewArrow.setAttribute('data-target-item', prevIdx)
         
         const nextArrow = arrowBtn.cloneNode(arrowBtn)
-        nextArrow.setAttribute('data-taget-item', nextIdx)
+        nextArrow.setAttribute('data-target-item', nextIdx)
         nextArrow.classList.add('arrow-btn--next')
         item.append(prewArrow, nextArrow)
     })
+}
 
+function caruselEngine(caruselBlocks, curItem = 0) {
+    console.log(curItem)
+    caruselBlocks.forEach((item, idx) => {
+            item.style.display = idx !== +curItem ? 'none' : 'flex'
+    })
 }
