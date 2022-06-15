@@ -19,6 +19,7 @@ const mainCarusel = () => {
     // const caruselBlocks = document.querySelectorAll('.main-carusel__item')
     if (caruselBlocks.length > 1) {
         addBulletBlock(caruselBlocks)
+        addArrowButtons(caruselBlocks)
 
         let curItem = 0
 
@@ -35,21 +36,39 @@ function addBulletBlock(caruselBlocks) {
     const hollowBullet = document.createElement('div')
     hollowBullet.classList.add('bullet-block__bullet')
 
-    const loadedBullet = document.createElement('div')
-    loadedBullet.classList.add('bullet-block__bullet', 'bullet-block__bullet--loaded')
-
     for (let i = 0; i < caruselBlocks.length; i++) {
-        bulletBlock.appendChild(hollowBullet.cloneNode(true))
+        let currentBullet = hollowBullet.cloneNode(true)
+        currentBullet.setAttribute('data-bullet-no', i)
+        console.log(currentBullet)
+        bulletBlock.appendChild(currentBullet)
     }
 
     caruselBlocks.forEach((item, idx) => {
         const currentBlock = bulletBlock.cloneNode(true)
-        const replaceableBlock = currentBlock.childNodes[idx]
-        currentBlock.replaceChild(loadedBullet.cloneNode(true), replaceableBlock)
+        currentBlock.childNodes[idx].classList.add('bullet-block__bullet--loaded')
         item.append(currentBlock)
     });
 }
 
-function addArrowBlocks(caruselBlocks) {
+function addArrowButtons(caruselBlocks) {
+    const arrowBtn = document.createElement('div')
+    arrowBtn.classList.add('arrow-btn')
+    
+    const arrowBtnArrow = document.createElement('div')
+    arrowBtnArrow.classList.add('arrow-btn__arrow')
+
+    arrowBtn.appendChild(arrowBtnArrow)
+
+    caruselBlocks.forEach((item, idx) => {
+        const prevIdx = idx === 0 ? caruselBlocks.length - 1 : idx - 1
+        const nextIdx = idx === caruselBlocks.length - 1 ? 0 : idx + 1
+        const prewArrow = arrowBtn.cloneNode(arrowBtn)
+        prewArrow.setAttribute('data-target-item', prevIdx)
+        
+        const nextArrow = arrowBtn.cloneNode(arrowBtn)
+        nextArrow.setAttribute('data-taget-item', nextIdx)
+        nextArrow.classList.add('arrow-btn--next')
+        item.append(prewArrow, nextArrow)
+    })
 
 }

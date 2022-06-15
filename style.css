@@ -173,8 +173,8 @@ body {
     background-color: rgb(159, 182, 159);
 }
 
-main {
-}
+/* main {
+} */
 
 .main-carusel {
     margin: 0;
@@ -184,6 +184,7 @@ main {
 
 .main-carusel__item {
     background-color: rgb(217, 249, 167);
+    position: relative;
     min-height: 300px;
     padding: 20px 60px;
     margin-bottom: 5px;
@@ -206,7 +207,6 @@ main {
     border-radius: 5px;
 }
 
-.bullet-block__bullet,
 .bullet-block__bullet {
     height: 10px;
     width: 10px;
@@ -219,4 +219,35 @@ main {
 .bullet-block__bullet.bullet-block__bullet--loaded,
 .bullet-block__bullet:hover {
     background-color: var(--text-color);
+}
+
+.arrow-btn {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 130px;
+    left: 10px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-red);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.arrow-btn.arrow-btn--next {
+    left: auto;
+    right: 10px;
+}
+
+.arrow-btn__arrow {
+    width: 15px;
+    height: 15px;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    transform: rotate(-45deg);
+}
+
+.arrow-btn.arrow-btn--next .arrow-btn__arrow {
+    transform: rotate(135deg);
 }
